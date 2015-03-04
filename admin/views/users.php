@@ -1,3 +1,22 @@
+<!-- Hide image upload for new user -->
+<?php if(isset($opened['id'])) { ?>
+	<script>
+		$(document).ready(function() {
+			
+			Dropzone.autoDiscover = false;
+			
+			var myDropzone = new Dropzone("#avatar-dropzone");
+			
+			myDropzone.on("success", function(file) {
+				$("#avatar").load("ajax/avatar.php?id=<?php echo $opened['id']; ?>");				
+			});
+			
+		});
+		
+	</script>
+<?php } ?>
+
+
 <h1>User Manager</h1>
 
 <div class="row">
@@ -33,8 +52,16 @@
 	<div class="col-md-9">
 		<?php if(isset($_POST['submitted']) == 1) { echo $message; } ?>
 
+
 		<!-- Input form -->
 		<form action="index.php?page=users&id=<?php echo $opened['id']; ?>" method="post" role="form">
+			
+			<div id="avatar">
+				<?php if($opened['avatar'] != '') { ?>
+						<div class="avatar-container" style="background-image: url('../uploads/<?php echo $opened['avatar']; ?>')"></div>
+				<?php } ?>
+			</div>
+			
 			<div class="form-group">
 				<label for="first">First Name:</label>
 				<input class="form-control" type="text" name="first" id="first" value="<?php echo $opened['first']; ?>" placeholder="First Name" autocomplete="off">
@@ -77,6 +104,14 @@
 			<input type="hidden" name="id" value="<?php echo $opened['id']; ?>">
 			<?php } ?>
 		</form>
+		
+		
+		<!-- Hide image upload for new user -->
+		<?php if(isset($opened['id'])) { ?>
+			<form action="uploads.php?id=<?php echo $opened['id']; ?>" class="dropzone" id="avatar-dropzone">
+				<input type="file" name="file">
+			</form>
+		<?php } ?>
 	</div>	
 	
 </div>

@@ -15,9 +15,11 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-
 <!-- Load TinyMCE for WYSIWIG -->
 <script src="js/tinymce/tinymce.min.js"></script>
+
+<!-- Load Dropzone.js -->
+<script src="js/dropzone.js"></script>
 
 <script>
 	$(document).ready(function() {
@@ -47,7 +49,16 @@
 
 			//alert(selected);
 		})
-	});
+		
+		$("#sort-nav").sortable({
+			cursor: "move", 
+			update: function() {
+				var order = $(this).sortable("serialize");
+				$.get("ajax/list-sort.php", order);
+			}
+		});
+		
+	});  // END document.ready();
 	
 	
 	tinymce.init({

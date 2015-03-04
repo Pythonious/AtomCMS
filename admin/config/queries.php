@@ -86,6 +86,33 @@
 			
 			
 			
+		case 'navigation':
+			# Handle "Save" button for settings
+			if(isset($_POST['submitted']) == 1) {
+				$label = mysqli_real_escape_string($dbc, $_POST['label']);
+				$url = mysqli_real_escape_string($dbc, $_POST['url']);
+
+				
+				if(isset($_POST['id']) != '') {
+					$q = "UPDATE navigation SET id = '$_POST[id]', label='$label', url='$url', position=$_POST[position], status=$_POST[status] WHERE id='$_POST[openedid]'";
+					$action = "updated";
+					$r = mysqli_query($dbc,$q);
+					
+				} 
+				
+				
+				if($r) {
+					$message = '<p class="alert alert-success">Navigation Item was '.$action.'</p>';
+				} else {
+					$message = '<p class="alert alert-danger">Navigation Item could not be '.$action.' because: '.mysqli_error($dbc).'</p>';
+					$message .= '<p class="alert alert-warning">Query: '.$q.'</p>';
+				}
+			}
+
+			break;
+						
+			
+			
 		case 'settings':
 			# Handle "Save" button for settings
 			if(isset($_POST['submitted']) == 1) {

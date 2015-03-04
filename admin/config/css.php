@@ -15,6 +15,10 @@
 <!-- jQuery CSS -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
+<!-- Dropzone CSS -->
+<link rel="stylesheet" href="css/dropzone.css">
+
+
 <!-- FontAwesome -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -57,5 +61,15 @@
 	#console-debug pre {
 		
 
+	}
+	
+	.avatar-container {
+		width: 100px;
+		height: 100px;
+		
+		border-radius: 3px;
+		
+		background-size: cover;
+		background-position: center center;
 	}
 </style>
