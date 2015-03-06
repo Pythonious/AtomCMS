@@ -11,13 +11,23 @@ function data_setting_value($dbc,$id) {
 }
 
 
-function data_page($dbc, $id) {
+function data_post_type($dbc,$id) {
+	$q = "SELECT * FROM post_types WHERE id = $id";
+	$r = mysqli_query($dbc,$q);
+	
+	$data = mysqli_fetch_assoc($r);
+	
+	return $data;
+}
+
+
+function data_post($dbc, $id) {
 	if(is_numeric($id)) {
 		$cond = "WHERE id = $id";
 	} else {
 		$cond = "WHERE slug = '$id'";
 	}
-	$q = "SELECT * FROM pages $cond";
+	$q = "SELECT * FROM posts $cond";
 	$r = mysqli_query($dbc,$q);
 	
 	$data = mysqli_fetch_assoc($r);
