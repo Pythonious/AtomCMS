@@ -1,0 +1,20 @@
+<html ng-app="countryApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular.js Example</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script>
+      var countryApp = angular.module('countryApp', []);
+      countryApp.controller('CountryController', function ($scope, $http){
+        $http.get('http://www.bogotobogo.com/AngularJS/files/Dependency_Injection/countries.json').success(function(data) {
+          $scope.countries = data;
+        });
+      });
+    </script>
+  </head>
+  <body>
+	
+Yo ? YOHYOH YOH OYHOY
+      
+  </body>
+</html>
