@@ -13,10 +13,10 @@
 				$body = mysqli_real_escape_string($dbc, $_POST['body']);
 				
 				if(isset($_POST['id']) != '') {
-					$q = "UPDATE pages SET user=$_POST[user], slug='$_POST[slug]', title='$title', label='$label', header='$header', body='$body' WHERE id=$_GET[id]";
+					$q = "UPDATE posts SET user=$_POST[user], slug='$_POST[slug]', title='$title', label='$label', header='$header', body='$body' WHERE id=$_GET[id]";
 					$action = "updated";	
 				} else {
-					$q = "INSERT INTO pages (user,slug,title,label,header,body) VALUES ($_POST[user], '$_POST[slug]', '$title', '$label', '$header', '$body')";
+					$q = "INSERT INTO posts (type,user,slug,title,label,header,body) VALUES (1,$_POST[user], '$_POST[slug]', '$title', '$label', '$header', '$body')";
 					$action = "added";	
 				}
 				
@@ -29,7 +29,7 @@
 					$message .= '<p class="alert alert-warning">'.$q.'</p>';
 				}
 			}
-			if(isset($_GET['id'])) { $opened = data_page($dbc,$_GET['id']); }
+			if(isset($_GET['id'])) { $opened = data_post($dbc,$_GET['id']); }
 			
 			break;
 			
